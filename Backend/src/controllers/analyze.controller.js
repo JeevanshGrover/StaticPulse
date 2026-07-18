@@ -2,7 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { validateRepo } from "../services/github/validateRepo.js";
 import { cloneRepo } from "../services/github/cloneRepo.js";
-import { scanRepo } from "../services/analysis/fileScanner.js";
+import { scanRepo } from "../services/analysis/analyzers/fileScanner.js";
 import { cleanupRepo } from "../utils/tempManager.js";
 import { ApiError } from "../utils/ApiError.js";
 
