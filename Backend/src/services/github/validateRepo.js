@@ -1,7 +1,7 @@
 import { ApiError } from "../../utils/ApiError.js"
 
 function validateRepo(repoUrl){
-    if(!repoUrl || typeof repoURL !== "string"){
+    if(!repoUrl || typeof repoUrl !== "string"){
         throw new ApiError(400, "Repo URL is required") 
     }
 

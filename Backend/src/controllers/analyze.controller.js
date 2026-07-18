@@ -8,6 +8,9 @@ import { ApiError } from "../utils/ApiError.js";
 
 const analyzeRepo = asyncHandler(async(req, res) => {
     const { repoUrl } = req.body;
+    if(!repoUrl){
+        throw new ApiError(400, "URL is required")
+    }
 
     let repoPath;
     try{
