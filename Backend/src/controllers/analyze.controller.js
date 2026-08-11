@@ -16,25 +16,22 @@ const analyzeRepo = asyncHandler(async(req, res) => {
     let repoPath;
     try{
         validateRepo(repoUrl)
-        console.log(`repo validated`)
 
         const cloned = await cloneRepo(repoUrl)
-        console.log("repo cloned: clonedPath= ", cloned)
         repoPath = cloned.path;
-        console.log("repo cloned: ", repoPath)
 
         const metrics = await runAnalyzers(repoPath);
-        console.log("metrics: ", metrics)
         if(!metrics){
             throw new ApiError(500, "Internal server Error: Unable to fetch metrics")
         }
         
         const aiAnalysis = await getAIAnalysis(metrics)
-        console.log("aiAnalysis result: ", aiAnalysis)
         const report = {
             metrics,
             ...aiAnalysis,
         }
+
+        console.log("report ->>", report)
 
         return res
             .status(200)
