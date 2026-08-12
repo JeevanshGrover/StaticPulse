@@ -31,8 +31,6 @@ const analyzeRepo = asyncHandler(async(req, res) => {
             ...aiAnalysis,
         }
 
-        console.log("report ->>", report)
-
         return res
             .status(200)
             .json(new ApiResponse(200, report, "repository analyzed successfully"))
