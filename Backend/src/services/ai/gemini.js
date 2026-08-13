@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai"
 import { analysisPrompt } from "./prompt.js"
 import { ApiError } from "../../utils/ApiError.js"
 
-const GEMINI_TIMEOUT = 15000;
+const GEMINI_TIMEOUT = 30000;
 function getClient() {
     return new GoogleGenAI({
         apiKey: process.env.GEMINI_API_KEY
