@@ -9,12 +9,12 @@ export default function Navbar() {
       <span className="navbar-brand">Project Auditor</span>
 
       <div className="navbar-actions">
-        <a href="mailto:your-email@example.com" title="Contact" className="navbar-link">
+        <a href="mailto:groverjeevansh0243@gmail.com" title="Contact" className="navbar-link">
           <i className="ti ti-mail" />
         </a>
 
         <a
-          href="https://github.com/your-username/project-auditor"
+          href="https://github.com/JeevanshGrover/StaticPulse"
           target="_blank"
           rel="noreferrer"
           title="GitHub repo"
