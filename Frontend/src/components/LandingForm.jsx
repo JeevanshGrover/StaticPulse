@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Logo from "./Logo";
 
 const GITHUB_URL_PATTERN = /^https?:\/\/github\.com\/[\w.-]+\/[\w.-]+(\.git)?\/?$/;
 
@@ -26,8 +27,8 @@ export default function LandingForm({ onSubmit }) {
 
   return (
     <div className="page-center">
-      <div className="icon-badge mb-5">
-        <i className="ti ti-shield-check text-xl" />
+      <div className="landing-logo mb-5">
+        <Logo size={44} />
       </div>
 
       <h1 className="page-title sm:text-3xl mb-2">

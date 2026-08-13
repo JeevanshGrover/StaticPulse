@@ -13,6 +13,9 @@
 
   --ease-out: cubic-bezier(0.4, 0, 0.2, 1);
   --ease-in-out: cubic-bezier(0.4, 0, 0.6, 1);
+
+  --font-brand: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --logo-accent: #4a8fd4;
 }
 
 :root[data-theme="dark"] {
@@ -171,11 +174,36 @@ body {
     box-shadow var(--transition-base) var(--ease-out);
 }
 
+.navbar-brand-group {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.navbar-logo {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+
+.landing-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+}
+
 .navbar-brand {
-  font-weight: 600;
-  font-size: 0.9375rem;
-  letter-spacing: -0.01em;
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  letter-spacing: -0.035em;
+  line-height: 1;
   color: var(--text-primary);
+}
+
+.navbar-brand-accent {
+  font-weight: 600;
+  color: var(--logo-accent);
 }
 
 .navbar-actions {
