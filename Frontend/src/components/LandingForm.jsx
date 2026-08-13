@@ -1,31 +1,64 @@
-import React, { useState } from 'react'
+import { useState } from "react";
 
-function LandingForm({ onSubmit }) {
+const GITHUB_URL_PATTERN = /^https?:\/\/github\.com\/[\w.-]+\/[\w.-]+(\.git)?\/?$/;
+
+export default function LandingForm({ onSubmit }) {
   const [repoUrl, setRepoUrl] = useState("");
+  const [validationError, setValidationError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(!repoUrl.trim()) return;
-    onSubmit(repoUrl);
-  }
+    const trimmed = repoUrl.trim();
+
+    if (!trimmed) {
+      setValidationError("Please enter a repository URL");
+      return;
+    }
+
+    if (!GITHUB_URL_PATTERN.test(trimmed)) {
+      setValidationError("Please enter a valid public GitHub repository URL");
+      return;
+    }
+
+    setValidationError("");
+    onSubmit(trimmed);
+  };
 
   return (
-    <div>
-      <h1>
-        Project Audit
+    <div className="page-center">
+      <div className="icon-badge mb-5">
+        <i className="ti ti-shield-check text-xl" />
+      </div>
+
+      <h1 className="page-title sm:text-3xl mb-2">
+        Project Auditor
       </h1>
-      <form onSubmit={handleSubmit}>
+      <p className="page-subtitle mb-7 max-w-sm">
+        Instant hygiene and structure audit for your GitHub repo
+      </p>
+
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-md flex flex-col sm:flex-row gap-2"
+      >
         <input
           type="text"
           value={repoUrl}
-          onChange={(e) => setRepoUrl(e.target.value)}
+          onChange={(e) => {
+            setRepoUrl(e.target.value);
+            if (validationError) setValidationError("");
+          }}
+          placeholder="github.com/user/repo"
+          className={`input-field ${validationError ? "input-field--error" : ""}`}
         />
-        <button
-          type="submit"
-        >Analyze</button>
+        <button type="submit" className="btn-primary shrink-0">
+          Analyze
+        </button>
       </form>
-    </div>
-  )
-}
 
-export default LandingForm
+      {validationError && (
+        <p className="text-xs text-(--text-danger) mt-2">{validationError}</p>
+      )}
+    </div>
+  );
+}

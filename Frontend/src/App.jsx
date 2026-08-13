@@ -7,6 +7,7 @@ import Dashboard from "./components/Dashboard.jsx"
 import ErrorState from "./components/ErrorState.jsx"
 import LoadingState from "./components/LoadingState.jsx"
 import Navbar from "./components/Navbar.jsx"
+import Footer from "./components/Footer.jsx"
 
 function App() {
   const [status, setStatus] = useState("idle");
@@ -17,7 +18,7 @@ function App() {
     setStatus("loading");
     try {
       const result = await analyzeRepo(repoUrl)
-      setData(result)
+      setData({ ...result, repoUrl })
       setStatus("success")
       console.log("data received- \n", result)
     } catch (err) {
@@ -35,10 +36,13 @@ function App() {
   return (
     <div className="app-shell">
       <Navbar />
-      {status === "loading" && <LoadingState />}
-      {status === "success" && <Dashboard data={data} onReset={handleReset} />}
-      {status === "error" && <ErrorState message={error} onRetry={handleReset} />}
-      {status === "idle" && <LandingForm onSubmit = {handleAnalyze} />}
+      <main className="app-main">
+        {status === "loading" && <LoadingState />}
+        {status === "success" && <Dashboard data={data} onReset={handleReset} />}
+        {status === "error" && <ErrorState message={error} onRetry={handleReset} />}
+        {status === "idle" && <LandingForm onSubmit = {handleAnalyze} />}
+      </main>
+      <Footer />
     </div>
   )
 }

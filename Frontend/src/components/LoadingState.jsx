@@ -25,20 +25,9 @@ export default function LoadingState() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        minHeight: "60vh",
-        textAlign: "center",
-      }}
-    >
+    <div className="loading-state">
       <div className="spinner" />
-      <p style={{ fontSize: 14, color: "var(--text-secondary)", marginTop: 16 }}>
-        {MESSAGES[index]}
-      </p>
+      <p className="loading-message">{MESSAGES[index]}</p>
     </div>
   );
 }
