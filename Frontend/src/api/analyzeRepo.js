@@ -1,6 +1,9 @@
 
 async function analyzeRepo(repoUrl) {
-    const res = await fetch(`http://localhost:5000/api/v1/analyze`, {
+    const API_URL = import.meta.env.DEV 
+                    ? "http://localhost:5000/api/v1" //replace this with your local backend URL
+                    :import.meta.env.VITE_API_URL; 
+    const res = await fetch(`${API_URL}/analyze`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ repoUrl }),
@@ -8,8 +11,7 @@ async function analyzeRepo(repoUrl) {
 
     const json = await res.json();
 
-    //TODO: remove the complete message
-    if(!res.ok) throw new Error(json.message || "something went wrong in analyzeRepo")
+    if(!res.ok) throw new Error(json.message || "something went wrong")
     
     return json.data;
 }
