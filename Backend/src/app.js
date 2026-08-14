@@ -5,7 +5,9 @@ import { errorHandler } from "./middleware/errorHandler.middleware.js";
 const app = express()
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: process.env.NODE_ENV === "development" 
+            ? "process.env.CORS_ORIGIN"  //replace this with your local frontend URL
+            : "https://staticpulse-v1.vercel.app/", 
     credentials: true
 }))
 
